@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El hombre de la bolsa - Productos</title>
+    <link rel="stylesheet" href="css/producto.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="Index.html" id="backBtn" class="back-button">
+            <svg class="back-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </a>
+        <h1 id="categoryTitle" class="header-title">Productos</h1>
+        <div class="header-spacer"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Download Catalog Button -->
+        <div class="catalog-section">
+            <button id="downloadCatalog" class="download-button">
+                <svg class="download-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Descargar Catálogo
+            </button>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-section">
+            <div class="search-box">
+                <input 
+                    type="search" 
+                    id="productSearch" 
+                    placeholder="Buscar productos..."
+                    class="search-input"
+                >
+                <button class="search-button">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Category Buttons -->
+        <div class="category-buttons">
+            <button class="category-btn" data-category="plasticos">
+                <div class="category-icon">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                    </svg>
+                </div>
+                <span>Plásticos</span>
+            </button>
+            
+            <button class="category-btn" data-category="cartones">
+                <div class="category-icon">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/>
+                    </svg>
+                </div>
+                <span>Cartones</span>
+            </button>
+            
+            <button class="category-btn" data-category="bolsas">
+                <div class="category-icon">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/>
+                    </svg>
+                </div>
+                <span>Bolsas</span>
+            </button>
+        </div>
+
+        <!-- Products Table -->
+        <div id="productsTableContainer" class="products-container" style="display: none;">
+            <div class="table-header">
+                <h2 id="tableTitle" class="table-title"></h2>
+            </div>
+            <div class="table-responsive">
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <!-- Added photo column at the beginning -->
+                            <th>Foto</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <!-- Dynamic content will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer / Pie de página -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <!-- Columna 1: Sobre nosotros -->
+                <div class="footer-column">
+                    <h4>El hombre de la bolsa</h4>
+                    <p>Tu tienda de confianza desde 1995. Ofrecemos productos de calidad para toda las Empresas y Negocios.</p>
+                </div>
+
+                <!-- Columna 2: Enlaces rápidos -->
+                
+
+                <!-- Columna 3: Contacto -->
+                <div id="contactos" class="footer-column">
+                    <h4>Información</h4>
+                    <ul>
+                        <li>📍 Av. Roca 275, Tucuman</li>
+                        <li>📍 Fleming 155, Termas de Rio Hondo</li>
+                        <li>📍 Hipolito Irigoyen 455, Santiago Del Estero</li>
+                        <li>📞 Tucuman +54 9 381-2443-333</li>
+                        <li>📞 Santiago +54 9 385-6189-825</li>
+                        <li>🕐 Lun - Sáb: 8:00 - 21:00</li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Redes sociales -->
+                <div class="footer-column">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link facebook" aria-label="Facebook">f</a>
+                        <a href="#" class="social-link instagram" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link whatsapp" aria-label="WhatsApp">💬</a>
+                        
+                    </div>
+                    <ul>
+                        <li><a href="www.MAPSANET.com" >www.MAPSANET.com</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+
+
+            
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 El hombre de la bolsa. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+
+    <script src="js/producto.js"></script>
+</body>
+</html>
