@@ -1,3 +1,13 @@
+
+
+
+.cuadradoHamburguesa{
+  padding: 2px;
+  border-radius: 5px;
+  background-color: #f3f3f3;
+}
+
+
 /* Reset y estilos base */
 * {
   margin: 0;
@@ -336,7 +346,7 @@ body {
 
 /* Agregado contenedor para botón de scroll en hero */
 .hero-action {
-  padding: 40px 20px;
+  padding: 1px 20px 40px 20px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -472,23 +482,90 @@ body {
 }
 
 /* Botones de categorías */
-.buttons-container {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-bottom: 60px;
-}
+/* =========================================
+   NUEVO ESTILO: CARRUSEL VERTICAL (WHEEL)
+   ========================================= */
 
-.category-button {
-  width: 100%;
-  border: none;
-  border-radius: 16px;
-  padding: 0;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s, box-shadow 0.3s;
-  overflow: hidden;
-}
+   .buttons-container {
+    /* Definimos una altura fija para el área visible de la rueda */
+    border-radius: 1em;
+    height: 500px; 
+    position: relative;
+    overflow: hidden; /* Oculta los botones que se salen del área */
+    perspective: 1000px; /* Clave para el efecto 3D si rotamos elementos */
+    /* Centrado en la página */
+    margin: 0 auto 60px auto; 
+    max-width: 600px; /* O el ancho que prefieras */
+    
+    /* Gradientes para desvanecer arriba y abajo (opcional pero recomendado) */
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+  }
+  
+  .category-button {
+
+    border-radius: 15px !important; /* Bordes muy redondeados */
+    overflow: hidden; /* Asegura que la imagen/contenido respete el borde */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    /* Posicionamiento absoluto para poder moverlos libremente */
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Centrado horizontal inicial */
+    width: 90%; /* Ancho del botón dentro del contenedor */
+    max-width: 400px;
+    height: 120px; /* Altura fija necesaria para los cálculos */
+    
+    /* Transformaciones base */
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%); /* Centra el punto de anclaje */
+    
+    /* Transición suave para el movimiento */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                opacity 0.4s ease, 
+                box-shadow 0.4s ease,
+                filter 0.4s ease;
+                
+    /* Reset de estilos anteriores */
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    /* Importante: evitar selección de texto al arrastrar */
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  /* Ajuste del contenido interno para que se vea bien en la rueda */
+  .button-content {
+    width: 100%;
+    padding: 0 20px;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  .icon-container {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+  }
+  
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .button-text {
+    font-size: 24px;
+  }
+  
+  /* Estado activo (el del centro) - Opcional, JS se encarga, 
+     pero esto ayuda si quieres un borde extra */
+  .category-button.active {
+    z-index: 10;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  }
 
 .category-button:hover {
   transform: translateY(-4px);
@@ -498,8 +575,8 @@ body {
 .supers-button {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
-
 .rotiseria-button {
+
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
 }
 

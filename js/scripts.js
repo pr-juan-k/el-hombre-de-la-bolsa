@@ -1,166 +1,289 @@
-// Logica titulo en Producto segun boton seleccionado
+// ==========================================
+// 1. LÓGICA DE NAVEGACIÓN Y MENÚ (Tu código original)
+// ==========================================
 
-// Paso 1: Seleccionar todos los botones de categoría
+// Logica titulo en Producto segun boton seleccionado
 const categoryButtons = document.querySelectorAll(".category-button");
 
-// Paso 2: Iterar y adjuntar un manejador de eventos a cada botón
 categoryButtons.forEach(button => {
     button.addEventListener("click", () => {
-        
-        // 1. Obtener el valor de la categoría del atributo data-category
-        // Para el botón 'Supers', esto captura el texto "Supers".
         const category = button.getAttribute("data-category");
-        
-        // 2. Redirigir a productos.html, agregando el dato a la URL
-        // Usamos 'cat' como el nombre del parámetro.
-        // La URL final se verá así: productos.html?cat=Supers
         window.location.href = `producto.html?cat=${encodeURIComponent(category)}`;
     });
 });
 
-
-const menuBtn = document.getElementById("menuBtn")
-const closeMenuBtn = document.getElementById("closeMenuBtn")
-const menuOverlay = document.getElementById("menuOverlay")
-const menuLinks = document.querySelectorAll(".menu-nav a")
+const menuBtn = document.getElementById("menuBtn");
+const closeMenuBtn = document.getElementById("closeMenuBtn");
+const menuOverlay = document.getElementById("menuOverlay");
+const menuLinks = document.querySelectorAll(".menu-nav a");
 
 // Abrir menú
-menuBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-  
-    // 1. Verificar el estado actual del menú/botón
-    const isMenuOpen = menuBtn.classList.contains("active");
-  
-    if (isMenuOpen) {
-      // Si ya tiene 'active', significa que es el botón de CERRAR (la X)
-      closeMenu();
-    } else {
-      // Si NO tiene 'active', significa que es el botón de ABRIR (la hamburguesa)
-      menuOverlay.classList.add("active");
-      menuBtn.classList.add("active");
-      document.body.style.overflow = "hidden";
-    }
-  });
-
+if(menuBtn) {
+    menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isMenuOpen = menuBtn.classList.contains("active");
+        if (isMenuOpen) {
+            closeMenu();
+        } else {
+            menuOverlay.classList.add("active");
+            menuBtn.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+    });
+}
 
 // Cerrar menú
 function closeMenu() {
-  menuOverlay.classList.remove("active")
-  menuBtn.classList.remove("active")
-  document.body.style.overflow = ""
+    menuOverlay.classList.remove("active");
+    menuBtn.classList.remove("active");
+    document.body.style.overflow = "";
 }
 
-closeMenuBtn.addEventListener("click", (e) => {
-  e.stopPropagation()
-  closeMenu()
-})
+if(closeMenuBtn) {
+    closeMenuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeMenu();
+    });
+}
 
-// Cerrar al hacer clic fuera del contenido del menú
-menuOverlay.addEventListener("click", (e) => {
-  if (e.target === menuOverlay) {
-    closeMenu()
-  }
-})
+// Cerrar al hacer clic fuera
+if(menuOverlay) {
+    menuOverlay.addEventListener("click", (e) => {
+        if (e.target === menuOverlay) {
+            closeMenu();
+        }
+    });
+}
 
-// Cerrar menú al hacer clic en un enlace
 menuLinks.forEach((link) => {
-  link.addEventListener("click", closeMenu)
-})
+    link.addEventListener("click", closeMenu);
+});
 
-// Cerrar con tecla Escape
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && menuOverlay.classList.contains("active")) {
-    closeMenu()
-  }
-})
+    if (e.key === "Escape" && menuOverlay && menuOverlay.classList.contains("active")) {
+        closeMenu();
+    }
+});
 
-const clientTypeBtn = document.getElementById("clientTypeBtn")
-const clientTypeLabel = document.getElementById("clientTypeLabel")
-const clientDropdown = document.getElementById("clientDropdown")
-const clientOptions = document.querySelectorAll(".client-option")
-const friendCodeContainer = document.getElementById("friendCodeContainer")
-const friendCodeInput = document.getElementById("friendCodeInput")
-const applyCodeBtn = document.getElementById("applyCodeBtn")
+// Lógica de Cliente / Dropdown
+const clientTypeBtn = document.getElementById("clientTypeBtn");
+const clientTypeLabel = document.getElementById("clientTypeLabel");
+const clientDropdown = document.getElementById("clientDropdown");
+const clientOptions = document.querySelectorAll(".client-option");
+const friendCodeContainer = document.getElementById("friendCodeContainer");
+const friendCodeInput = document.getElementById("friendCodeInput");
+const applyCodeBtn = document.getElementById("applyCodeBtn");
 
-let currentClientType = "cliente"
-let friendCode = ""
+let currentClientType = "cliente";
+let friendCode = "";
 
-// Toggle dropdown
-clientTypeBtn.addEventListener("click", (e) => {
-  e.stopPropagation()
-  clientTypeBtn.classList.toggle("active")
-  clientDropdown.classList.toggle("active")
-})
+if(clientTypeBtn) {
+    clientTypeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        clientTypeBtn.classList.toggle("active");
+        clientDropdown.classList.toggle("active");
+    });
 
-// Cerrar dropdown al hacer clic fuera
-document.addEventListener("click", (e) => {
-  if (!clientTypeBtn.contains(e.target) && !clientDropdown.contains(e.target)) {
-    clientTypeBtn.classList.remove("active")
-    clientDropdown.classList.remove("active")
-  }
-})
+    document.addEventListener("click", (e) => {
+        if (!clientTypeBtn.contains(e.target) && !clientDropdown.contains(e.target)) {
+            clientTypeBtn.classList.remove("active");
+            clientDropdown.classList.remove("active");
+        }
+    });
+}
 
-// Seleccionar tipo de cliente
 clientOptions.forEach((option) => {
     option.addEventListener("click", (e) => {
-      const type = e.target.dataset.type
-      currentClientType = type
-  
-      // 🎯 PUNTO DE MODIFICACIÓN 🎯
-      if (type === "cliente") {
-        clientTypeLabel.textContent = "Cliente"
-        friendCodeContainer.classList.remove("active")
-        // Mostrar el ícono: el contenedor del botón (clientTypeBtn) vuelve a su estado normal.
-        clientTypeBtn.classList.remove("hide-content-on-select") 
-      } else if (type === "especial") {
-        clientTypeLabel.textContent = "Tengo codigo"
-        friendCodeContainer.classList.add("active")
-        // Ocultar el ícono: añadimos una clase para que CSS lo oculte.
-        clientTypeBtn.classList.add("hide-content-on-select")
-        clientTypeBtn.classList.add("hidden") 
+        const type = e.target.dataset.type;
+        currentClientType = type;
+
+        if (type === "cliente") {
+            clientTypeLabel.textContent = "Cliente";
+            friendCodeContainer.classList.remove("active");
+            clientTypeBtn.classList.remove("hide-content-on-select");
+        } else if (type === "especial") {
+            clientTypeLabel.textContent = "Tengo codigo";
+            friendCodeContainer.classList.add("active");
+            clientTypeBtn.classList.add("hide-content-on-select");
+            clientTypeBtn.classList.add("hidden");
+        }
+
+        clientTypeBtn.classList.remove("active");
+        clientDropdown.classList.remove("active");
+    });
+});
+
+if(applyCodeBtn) {
+    applyCodeBtn.addEventListener("click", () => {
+        friendCode = friendCodeInput.value.trim();
+        if (friendCode) {
+            alert(`Código de cliente amigo aplicado: ${friendCode}`);
+        } else {
+            alert("Por favor ingresa un código válido");
+        }
+    });
+}
+
+// Scroll y Buscador
+const scrollToProductsBtn = document.getElementById("scrollToProductsBtn");
+const productsSection = document.getElementById("products");
+
+if(scrollToProductsBtn && productsSection) {
+    scrollToProductsBtn.addEventListener("click", () => {
+        productsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+}
+
+const searchForm = document.querySelector(".search-form");
+if(searchForm) {
+    searchForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const searchValue = document.querySelector(".search-input").value;
+        if (searchValue.trim()) {
+            alert(`Buscando (tipo: ${currentClientType}): ${searchValue}`);
+        }
+    });
+}
+
+
+// ==========================================
+// 2. EFECTO CARRUSEL (WHEEL) CORREGIDO
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.buttons-container');
+    // Si no existe el contenedor, no ejecutamos nada del carrusel para evitar errores
+    if (!container) return; 
+
+    const buttons = Array.from(document.querySelectorAll('.category-button'));
+
+    // CONFIGURACIÓN
+    let currentIndex = 0;
+    const itemHeight = 140; 
+    const visibleItems = 2; 
+    
+    // Variables para control táctil
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+    let dragThreshold = 30;
+
+    // A) FUNCIÓN DE RENDERIZADO
+    function updateCarousel() {
+        buttons.forEach((btn, index) => {
+            const dist = index - currentIndex;
+
+            if (Math.abs(dist) > visibleItems + 1) {
+                btn.style.visibility = 'hidden';
+                return;
+            }
+            btn.style.visibility = 'visible';
+
+            // Cálculos visuales
+            const opacity = Math.max(0, 1 - Math.abs(dist) * 0.35);
+            const scale = Math.max(0.7, 1 - Math.abs(dist) * 0.15);
+            const translateY = dist * itemHeight;
+            const rotateX = dist * -20; 
+            const zIndex = 100 - Math.abs(dist);
+            const blur = Math.abs(dist) * 2; 
+
+            // Aplicar estilos
+            btn.style.zIndex = zIndex;
+            btn.style.opacity = opacity;
+            btn.style.transform = `translate(-50%, calc(-50% + ${translateY}px)) scale(${scale}) perspective(1000px) rotateX(${rotateX}deg)`;
+            btn.style.filter = `blur(${blur}px)`;
+            
+            // Clase activa
+            if (dist === 0) btn.classList.add('active');
+            else btn.classList.remove('active');
+            
+            // Permitir click solo en el central (y para navegación en los laterales)
+            btn.style.pointerEvents = 'auto'; 
+        });
+    }
+
+    // B) EVENTOS MOUSE (Rueda)
+    container.addEventListener('wheel', (e) => {
+        e.preventDefault(); 
+        if (e.deltaY > 0) nextItem();
+        else prevItem();
+    }, { passive: false }); // Agregado passive: false por seguridad
+
+    // C) EVENTOS CLICK EN LATERALES
+    buttons.forEach((btn, index) => {
+        btn.addEventListener('click', (e) => {
+            if (currentIndex !== index) {
+                e.preventDefault(); 
+                e.stopPropagation(); // Detener propagación para evitar saltos raros
+                currentIndex = index;
+                updateCarousel();
+            }
+        });
+    });
+
+    // D) EVENTOS TÁCTILES (CORREGIDO EL DOBLE SCROLL)
+    
+    // Al tocar la pantalla
+    container.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY;
+        isDragging = true;
+    }, { passive: false }); // Importante: passive: false permite usar preventDefault
+
+    // Al mover el dedo
+    container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
         
-      }
-  
-      // Cerrar dropdown
-      clientTypeBtn.classList.remove("active")
-      clientDropdown.classList.remove("active")
-  
-      console.log("[v0] Tipo de cliente seleccionado:", type)
-    })
-  })
+        // ¡ESTA ES LA CORRECCIÓN!
+        // Evita que la página completa haga scroll mientras mueves la rueda
+        if (e.cancelable) {
+            e.preventDefault(); 
+        }
+        
+        currentY = e.touches[0].clientY;
+    }, { passive: false }); // Importante: passive: false es obligatorio aquí
 
-// Aplicar código de cliente amigo
-applyCodeBtn.addEventListener("click", () => {
-  friendCode = friendCodeInput.value.trim()
-  if (friendCode) {
-    alert(`Código de cliente amigo aplicado: ${friendCode}`)
-    console.log("[v0] Código de cliente amigo:", friendCode)
-    // Aquí puedes agregar lógica PHP para validar el código
-  } else {
-    alert("Por favor ingresa un código válido")
-  }
-})
+    // Al soltar el dedo
+    container.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        
+        // Si currentY es 0 significa que solo fue un tap, no un arrastre
+        if (currentY === 0) { 
+            isDragging = false; 
+            return; 
+        }
 
-const scrollToProductsBtn = document.getElementById("scrollToProductsBtn")
-const productsSection = document.getElementById("products")
+        const diff = startY - currentY;
 
-scrollToProductsBtn.addEventListener("click", () => {
-  productsSection.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  })
-})
+        if (Math.abs(diff) > dragThreshold) {
+            if (diff > 0) {
+                nextItem(); // Deslizó hacia arriba
+            } else {
+                prevItem(); // Deslizó hacia abajo
+            }
+        }
+        
+        // Reset variables
+        isDragging = false;
+        currentY = 0; 
+    });
 
-// Prevenir envío del formulario de búsqueda (para demo)
-document.querySelector(".search-form").addEventListener("submit", (e) => {
-  e.preventDefault()
-  const searchValue = document.querySelector(".search-input").value
-  if (searchValue.trim()) {
-    alert(`Buscando (tipo: ${currentClientType}): ${searchValue}`)
-    console.log("[v0] Búsqueda:", searchValue, "Cliente:", currentClientType)
-    // Aquí podrías agregar la lógica para buscar en archivos .txt con PHP
-  }
-})
+    // Funciones auxiliares
+    function nextItem() {
+        if (currentIndex < buttons.length - 1) {
+            currentIndex++;
+            updateCarousel();
+        }
+    }
 
+    function prevItem() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    }
 
+    
 
+    // Inicializar
+    updateCarousel();
+});
