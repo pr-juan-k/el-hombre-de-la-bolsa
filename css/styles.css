@@ -1,5 +1,7 @@
 
-
+.youtubeDes{
+  color: #111827;
+}
 
 .cuadradoHamburguesa{
   padding: 2px;
@@ -337,11 +339,11 @@ body {
 
 
 .hero-title {
-  
+  font-size: 2em;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 150px 20px 150px 20px;
+  padding: 80px 20px 80px 20px;
 }
 
 /* Agregado contenedor para botón de scroll en hero */

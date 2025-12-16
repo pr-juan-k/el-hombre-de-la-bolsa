@@ -19,8 +19,9 @@
 
     <main class="admin-main">
         <!-- Botones de gestión de usuarios -->
+        <h2>Usuarios</h2>
         <div class="user-management">
-            <button id="btnAltaUsuario" class="btn-user">Dar de Alta Usuario</button>
+            <button id="btnAltaUsuario" class="btn-user">+ Dar de Alta Usuario</button>
             <button id="btnVerUsuarios" class="btn-user">Ver Usuarios</button>
         </div>
 
@@ -42,7 +43,7 @@
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn-submit">Guardar Usuario</button>
-                    <button type="button" class="btn-cancel" onclick="cerrarFormUsuario()">Cancelar</button>
+                    <button type="button" class="btn-close" onclick="cerrarFormUsuario()">Cerrar</button>
                 </div>
             </form>
         </div>
@@ -71,11 +72,19 @@
             </div>
             <button class="btn-close" onclick="cerrarTablaUsuarios()">Cerrar</button>
         </div>
-
-        <!-- Formulario para cargar productos -->
-        <div class="form-container">
+        <h2>Productos</h2>
+        <!-- Botones productos -->
+        <div class="user-management">
+            <button id="btnCargarProducto" class="btn-user"> + Cargar Producto</button>
+            <button id="btnVerProducto" class="btn-user">Ver Productos</button>
+        </div>
+        <!--  Formulario para cargar productos -->
+        <div id="formularioProducto" class="form-container hidden" >
             <h2>Cargar Nuevo Producto</h2>
+            <button type="button" class="btn-close" onclick="cerrarFormUsuarioProducto()">Cerrar Producto </button>
+
             <form id="formProducto" class="form-producto">
+
                 <div class="form-group">
                     <label for="fotoProducto">Foto del Producto:</label>
                     <input type="file" id="fotoProducto" accept="image/*" required>
@@ -103,7 +112,15 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="precioAmigo">Precio con Descuento Amigo:</label>
+                    <label for="precioAmigo">Precio Descuento 1:</label>
+                    <input type="number" id="precioAmigo" step="0.01" placeholder="0.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="precioAmigo">Precio Descuento 2:</label>
+                    <input type="number" id="precioAmigo" step="0.01" placeholder="0.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="precioAmigo">Precio Descuento 3:</label>
                     <input type="number" id="precioAmigo" step="0.01" placeholder="0.00" required>
                 </div>
                 
@@ -148,6 +165,76 @@
             <div id="mensajeExito" class="mensaje-exito hidden">
                 ¡Producto guardado exitosamente!
             </div>
+        </div>
+        <!-- Tabla de Productos Cargados -->
+        <div id="tablaProductosContainer1" class="tabla-container hidden">
+            <h2>Productos Cargados</h2>
+        
+            <div class="familia-seccion">
+                <h3>1- Familia</h3>
+                <div class="table-responsive">
+                    <table id="tablaUsuariosF1" class="usuarios-table">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Código Especial</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaUsuariosBodyF1">
+                            </tbody>
+                    </table>
+                    <div id="noUsuariosF1" class="no-data hidden">No hay usuarios en Familia 1</div>
+                </div>
+            </div>
+        
+            <hr>
+        
+            <div class="familia-seccion">
+                <h3>2- Familia</h3>
+                <div class="table-responsive">
+                    <table id="tablaUsuariosF2" class="usuarios-table">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Código Especial</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaUsuariosBodyF2">
+                            </tbody>
+                    </table>
+                    <div id="noUsuariosF2" class="no-data hidden">No hay usuarios en Familia 2</div>
+                </div>
+            </div>
+        
+            <hr>
+        
+            <div class="familia-seccion">
+                <h3>3- Familia</h3>
+                <div class="table-responsive">
+                    <table id="tablaUsuariosBodyF3_table" class="usuarios-table">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Código Especial</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaUsuariosBodyF3">
+                            </tbody>
+                    </table>
+                    <div id="noUsuariosF3" class="no-data hidden">No hay usuarios en Familia 3</div>
+                </div>
+            </div>
+        
+            <button class="btn-close" onclick="cerrarT()">Cerrar</button>
         </div>
     </main>
 

@@ -19,6 +19,14 @@ function inicializarFormularios() {
   document.getElementById("btnVerUsuarios").addEventListener("click", () => {
     mostrarTablaUsuarios()
   })
+  //Boton ver Formulario
+  document.getElementById("btnCargarProducto").addEventListener("click",()=>{
+    mostrarFormProducto()
+  })
+  //Boton ver tabla productos
+  document.getElementById("btnVerProducto").addEventListener("click",()=>{
+    mostrarTablaProductos()
+  })
 
   // Formulario de usuario
  
@@ -43,8 +51,36 @@ function inicializarFormularios() {
 }
 
 // ==================== GESTIÓN DE USUARIOS ====================
+//Productos
+function mostrarTablaProductos()
+{
+  const btnTablaProducto = document.getElementById("btnVerProducto");
+  const tablaProductos = document.getElementById("tablaProductosContainer1");
 
-function mostrarFormUsuario() {
+  tablaProductos.classList.remove("hidden");
+}
+function cerrarT()
+{
+  const tablaProductos1 = document.getElementById("tablaProductosContainer1");
+
+  tablaProductos1.classList.add("hidden");
+}
+function mostrarFormProducto()
+{
+  const btnFormProduc = document.getElementById("btnCargarProducto");
+  const formularioProducto = document.getElementById("formularioProducto");
+
+  //btnFormProduc.classList.add("hidden");
+  formularioProducto.classList.remove("hidden");
+}
+function cerrarFormUsuarioProducto() 
+{
+  //btnFormProduc.classList.remove("hidden");
+  formularioProducto.classList.add("hidden");
+}
+// Usuarios
+function mostrarFormUsuario() 
+{
   const formContainer = document.getElementById("formUsuarioContainer")
   const tablaContainer = document.getElementById("tablaUsuariosContainer")
 
