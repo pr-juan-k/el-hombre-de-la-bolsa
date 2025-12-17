@@ -20,19 +20,17 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         if ($contenido !== false) {
             foreach ($contenido as $linea) {
                 $linea_limpia = trim($linea);
-                
-                // Dividir la línea: el ID está en el índice [0]
+                if (empty($linea_limpia)) continue; // Ignora líneas vacías
+            
                 $datos_usuario = explode(';', $linea_limpia);
-
-                // Comprobar si esta línea NO es el usuario que queremos eliminar
-                // Verificamos que tenga 4 campos y que el ID no coincida
-                if (count($datos_usuario) === 4 && $datos_usuario[0] === $id_a_eliminar) {
-                    // Esta línea es el usuario a eliminar. Marcamos como eliminado y NO la guardamos.
+            
+                // Comprobamos SOLO que el ID coincida (índice 0)
+                if (isset($datos_usuario[0]) && $datos_usuario[0] === $id_a_eliminar) {
                     $usuario_eliminado = true;
-                    continue; 
+                    continue; // Saltamos esta línea (la eliminamos)
                 }
                 
-                // Si no es el usuario a eliminar, la guardamos para reescribir
+                // Si no es el ID, mantenemos la línea original con su salto de línea
                 $lineas_restantes[] = $linea;
             }
 

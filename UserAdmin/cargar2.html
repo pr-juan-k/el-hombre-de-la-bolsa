@@ -28,7 +28,7 @@
         <!-- Formulario para dar de alta usuario (oculto por defecto) -->
         <div id="formUsuarioContainer" class="form-container hidden">
             <h2>Registrar Usuario Especial</h2>
-            <form action="procesa.php" method="post" id="formUsuario" class="form-usuario">
+            <form action="../php/procesaUser.php" method="post" id="formUsuario" class="form-usuario">
                 <div class="form-group">
                     <label for="nombreUsuario">Nombre:</label>
                     <input name="nombreUsuario" type="text" id="nombreUsuario" required>
@@ -38,8 +38,12 @@
                     <input name="apellidoUsuario" type="text" id="apellidoUsuario" required>
                 </div>
                 <div class="form-group">
-                    <label for="codigoUsuario">Código Especial:</label>
-                    <input name="codigoUsuario" type="text" id="codigoUsuario" required>
+                    <select name="precioCliente" id="precioCliente">
+                        <option>Seleccione Descuento para el Cliente</option>
+                        <option value="10%-Descuento">10%-Descuento</option>
+                        <option value="20%-Descuento">20%-Descuento</option>
+                        <option value="30%-Descuento">30%-Descuento</option>
+                    </select>
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn-submit">Guardar Usuario</button>
@@ -51,6 +55,7 @@
         <!-- Tabla de usuarios (oculta por defecto) -->
         <div id="tablaUsuariosContainer" class="tabla-container hidden">
             <h2>Usuarios Especiales Registrados</h2>
+            <p>Codigos: 10%-(cod73xs) 20%-(cod29fh) 30%-(cod95gt) </p>
             <div class="table-responsive">
                 <table id="tablaUsuarios" class="usuarios-table">
                     <thead>

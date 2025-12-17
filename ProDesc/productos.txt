@@ -1,0 +1,3 @@
+PROD_6942197007e834.57893928;PROD_6942197007e834.57893928.jpg;prueb1;12;65765;76576;765765;7657;7657;Plasticos;verduleria, super-mini, estacion-servicio
+PROD_69421a3467d9b7.74214523;PROD_69421a3467d9b7.74214523.jpg;prueb2;12;100;30000;10000;500;100;Plasticos;resto-roti-bar, clinica-consultorio, hoteles
+PROD_69421a6fb07b32.59215267;PROD_69421a6fb07b32.59215267.jpg;prueb3;12;100;1212;2323;3434;5656;Cartones;verduleria, resto-roti-bar, botique
