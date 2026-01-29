@@ -37,14 +37,16 @@ if (
     $exito = file_put_contents($ruta_completa, $linea . PHP_EOL, FILE_APPEND | LOCK_EX);
 
     if ($exito) {
-        echo '<h3>+ Usuario Cargado con éxito.</h3>';
         header('refresh:1;url=../UserAdmin/cargar.php');
+        echo '<h3>+ Usuario Cargado con éxito.</h3>';
+       
         exit();
     } else {
         echo '<h3>Error al escribir en el servidor.</h3>';
     }
 } else {
-    echo '<h3>¡ERROR: Faltan datos!</h3>';
     header('refresh:4;url=../UserAdmin/cargar.php');
+    echo '<h3>¡ERROR: Faltan datos!</h3>';
+
     exit();
 }

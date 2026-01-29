@@ -3,6 +3,66 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+
+/* Color de fondo para el producto encontrado */
+.producto-resaltado {
+  background-color: #fef3c7 !important; /* Un amarillo suave */
+  border: 2px solid #f59e0b !important;
+  transition: all 0.3s ease;
+}
+
+/* Animación opcional para que se note el movimiento */
+.fila-producto-admin {
+  transition: background-color 0.5s ease;
+}
+
+
+
+/* Estilo para la celda de acciones */
+.acciones-cell {
+    display: flex;
+    flex-direction: column; /* Alinea los botones uno arriba de otro */
+    gap: 8px;               /* Espacio entre los botones */
+    align-items: center;    /* Centra los botones horizontalmente */
+    padding: 10px 0;
+}
+
+/* Estilo base para ambos botones */
+.btn-edit, .btn-delete {
+    display: inline-block;
+    width: 80px;            /* Ancho fijo para que se vean parejos */
+    padding: 6px 0;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+/* Botón Editar - Naranja */
+.btn-edit {
+    background-color: #f59e0b; /* Naranja moderno */
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #d97706;
+}
+
+/* Botón Eliminar - Rojo */
+.btn-delete {
+    background-color: #ef4444;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #dc2626;
+}/* Estilo boton de acciones*/
+
+
+
 /*estilo para el chekbotx*/
 .checkbox-group.two-columns {
   display: grid;
@@ -117,6 +177,7 @@ body {
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
+  margin: 2em;
 }
 
 .form-container h2 {

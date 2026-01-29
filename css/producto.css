@@ -3,6 +3,66 @@
   padding: 0;
   box-sizing: border-box;
 }
+/*Estilo scrolla tabla lateral*/
+/* Ocultar el indicador en computadoras */
+.scroll-indicator {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .scroll-indicator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8fafc; /* Color suave de fondo */
+      color: #64748b;            /* Color de texto gris */
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid #e2e8f0;
+      border-bottom: none;
+      margin-top: 10px;
+  }
+
+  .scroll-indicator span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+  }
+
+  /* Animación de las flechas para que se muevan de lado a lado */
+  .arrow-left {
+      animation: slideLeft 1.5s infinite;
+  }
+  
+  .arrow-right {
+      animation: slideRight 1.5s infinite;
+  }
+
+  @keyframes slideLeft {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-5px); }
+  }
+
+  @keyframes slideRight {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+  }
+
+  /* Opcional: Asegurar que la tabla tenga un scrollbar más visible en móvil */
+  .table-responsive::-webkit-scrollbar {
+      height: 6px;
+  }
+  .table-responsive::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+  }
+}
+
+
+
+
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -51,7 +111,7 @@ body {
 
 .header-title {
   font-size: 1.5rem;
-  color: #333;
+  color: #ffffff;
   font-weight: 600;
   text-transform: capitalize;
 }

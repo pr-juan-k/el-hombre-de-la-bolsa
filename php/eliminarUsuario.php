@@ -62,7 +62,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
 // 5. Redireccionar al usuario a cargar.php con un mensaje de estado
 // Puedes usar sesiones, pero para simplificar, usaremos un parámetro GET simple.
-header('Location: ../UserAdmin/cargar.php?mensaje=' . urlencode($mensaje));
+header('refresh:1;url=../UserAdmin/cargar.php?mensaje=' . urlencode($mensaje));
+echo '<h3> -Usuario Eliminado con éxito.</h3>';
 exit();
 
 ?>

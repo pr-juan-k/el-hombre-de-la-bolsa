@@ -1,3 +1,288 @@
+/* Estilo a tabla de resultado de busqueda*/
+
+/* Estilo boton descargar catalogo completo*/
+
+.btn-catalog {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 90%;
+}
+
+.btn-catalog:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* FORMULARIO PARA PEDIR CODIGO*/
+/* Estilos para el formulario de solicitud */
+.modal-form { text-align: left; }
+
+.radio-group { margin: 15px 0; border: 1px solid #eee; padding: 10px; border-radius: 8px; }
+.radio-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.85rem; color: #555; }
+
+.radio-option { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; cursor: pointer; }
+.radio-option input { cursor: pointer; }
+
+.modal-btn-whatsapp {
+    width: 100%;
+    padding: 12px;
+    background: #25d366; /* Color WhatsApp */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.modal-btn-whatsapp:hover { background: #128c7e; }
+
+/*Estilo para cartel ingresar codigo de revendedor o solicitarlo*/
+/* Contenedor del Modal */
+.modal-container {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* La tarjeta blanca */
+.modal-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.modal-card h3 { color: #764ba2; margin-bottom: 10px; font-size: 1.5rem; }
+.modal-card p { color: #666; font-size: 0.9rem; margin-bottom: 20px; }
+
+/* Input y Botón */
+.modal-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  outline: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.modal-btn-apply {
+  width: 100%;
+  padding: 12px;
+  background: #764ba2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-btn-apply:hover { background: #667eea; }
+
+/* Enlace pedir código */
+.link-pedir-codigo {
+  display: block;
+  margin-top: 15px;
+  color: #764ba2;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Cerrar (X) */
+.modal-close-x {
+  position: absolute;
+  top: 10px; right: 15px;
+  background: none; border: none;
+  font-size: 25px; cursor: pointer; color: #aaa;
+}
+
+/* Mensajes */
+.modal-message { margin-top: 15px; font-weight: bold; font-size: 0.9rem; }
+
+/* Contenedor principal de resultados */
+.search-results-wrapper {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra suave */
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  animation: fadeIn 0.3s ease-out; /* Animación de entrada */
+}
+
+/* Título de la sección de resultados */
+.search-results-header {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #f3f4f6;
+}
+
+.results-count-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* Ajustes específicos para la tabla de búsqueda */
+.products-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* Espacio entre filas */
+}
+
+.products-table th {
+  background-color: #f9fafb;
+  color: #374151;
+  padding: 12px 15px;
+  font-size: 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.products-table td {
+  padding: 15px;
+  background-color: #ffffff;
+  vertical-align: middle;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+/* Efecto hover: se ilumina la fila al pasar el mouse */
+.products-table tbody tr:hover td {
+  background-color: #f0fdf4; /* Un verde muy sutil */
+  transition: background-color 0.2s ease;
+}
+
+/* Imagen del producto */
+.products-table img {
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s;
+}
+
+.products-table tr:hover img {
+  transform: scale(1.1); /* Zoom suave a la foto */
+}
+
+/* Animación simple */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Contenedor responsivo */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* --- ESTILOS PARA CELULAR (Media Query) --- */
+/* --- ESTILOS PARA CELULAR --- */
+@media screen and (max-width: 768px) {
+    
+  .products-table thead {
+      display: none; /* Seguimos ocultando el thead original */
+  }
+
+  .products-table, 
+  .products-table tbody, 
+  .products-table tr, 
+  .products-table td {
+      display: block;
+      width: 100%;
+  }
+
+  .products-table tr {
+      margin-bottom: 20px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 5px;
+      background: #fff;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+  }
+
+  .products-table td {
+      display: flex; /* CAMBIO CLAVE: Usamos flexbox */
+      justify-content: space-between; /* Manda el label a la izq y el valor a la der */
+      align-items: center;
+      text-align: right; /* Alinea el texto de la derecha */
+      padding: 12px 15px;
+      border-bottom: 1px solid #f3f4f6;
+      min-height: 45px;
+  }
+
+  .products-table td:last-child {
+      border-bottom: none;
+  }
+
+  /* Estilo para los encabezados de la izquierda */
+  .products-table td::before {
+      content: attr(data-label); /* Toma el texto del PHP */
+      font-weight: 700;
+      color: #374151; /* Color más oscuro para el título */
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      text-align: left;
+      padding-right: 10px;
+      flex-shrink: 0; /* Evita que el título se encoja */
+  }
+
+  /* Ajuste especial para la Celda de la Foto */
+  .products-table td:first-child {
+      background: #f9fafb;
+      justify-content: center; /* Centra la foto */
+      border-radius: 8px 8px 0 0;
+      margin: -5px -5px 5px -5px; /* Compensa el padding del tr */
+      padding: 15px;
+  }
+
+  .products-table td:first-child::before {
+      display: none; /* No queremos el texto "Foto" estorbando la imagen */
+  }
+
+  .products-table img {
+      width: 100px !important;
+      height: 100px !important;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+}
+/*Estilo boton tiktok*/
+/* Ejemplo de estilo para el nuevo botón */
+.social-link.tiktok {
+  background-color: #000000; /* Fondo negro característico */
+  color: #ffffff;
+}
+
+.social-link.tiktok:hover {
+  /* Efecto de iluminado con los colores neón de TikTok */
+  box-shadow: 2px 2px 0px #ee1d52, -2px -2px 0px #69c9d0;
+}
+
 
 .youtubeDes{
   color: #111827;
@@ -99,7 +384,6 @@ body {
 
 .client-dropdown {
   position: absolute;
-  top: calc(100% + 4px);
   left: 0;
   background-color: #ffffff;
   border: 2px solid #d1d5db;
@@ -183,7 +467,7 @@ body {
 }
 
 .apply-code-btn:hover {
-  background-color: #1d4ed8;
+  background-color: #8a0303;
 }
 
 /* Botón hamburguesa */
@@ -301,7 +585,7 @@ body {
 .hero {
   margin-top: 70px;
   height: 100vh;
-  background-image: url("../fotos/portada1.jpg?height=1080&width=1920");
+  background-image: url("../fotos/por2.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -372,6 +656,30 @@ body {
 }
 
 .scroll-button:hover {
+  background-color: #b11d1d;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* BOTON DE REVENDEDOR*/
+.button-revendedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background-color: rgba(209, 70, 70, 0.95);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+
+.button-revendedor:hover {
   background-color: #b11d1d;
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
@@ -550,7 +858,7 @@ body {
   .icon-container {
     width: 60px;
     height: 60px;
-    margin-right: 20px;
+    text-align: center;
   }
   
   .icon {
@@ -631,7 +939,7 @@ body {
   display: flex;
   align-items: center;
   gap: 25px;
-  padding: 35px 40px;
+  padding: 20px 30px;
 }
 
 .icon-container {
@@ -695,10 +1003,38 @@ body {
   line-height: 1.6;
 }
 
-/* Added styles for YouTube videos section */
+/* Estilos para la sección de videos de YouTube */
 .videos-section {
-  margin-top: 80px;
-  padding: 40px 0;
+  margin-top: 40px; /* Reducido para móvil, se puede ajustar con media queries */
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column; /* Alinea los elementos uno debajo del otro */
+  align-items: center;    /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente si hay una altura definida */
+  gap: 20px;              /* Espacio entre videos */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Para que los videos no se desborden y mantengan su forma */
+.videos-section iframe {
+  max-width: 100%;
+  width: 560px;          /* O el ancho que prefieras para escritorio */
+  aspect-ratio: 16 / 9;  /* Mantiene la proporción del video */
+  height: auto;          /* Permite que la altura se ajuste sola */
+  border-radius: 8px;    /* Opcional: bordes redondeados */
+}
+
+/* Ajustes específicos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .videos-section {
+    margin-top: 20px;
+    padding: 20px 10px;
+  }
+  
+  .videos-section iframe {
+    width: 100%; /* En móviles el video ocupa todo el ancho disponible */
+  }
 }
 
 .videos-title {
@@ -935,7 +1271,7 @@ body {
   }
 
   .button-content {
-    padding: 25px 30px;
+    padding: 15px 15px;
   }
 
   .icon-container {

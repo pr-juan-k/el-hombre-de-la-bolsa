@@ -1,2 +1,2 @@
-ID_69420bb82221d9.20485644;juanka;brito;30%-Descuento
-ID_69420ee8b503d3.89607202;lucia;leal;20%-Descuento
+ID_696bbdded8e488.70668113;venito;rodriguez;r50
+ID_696bc14686ae60.53914203;juan;brito;r100
